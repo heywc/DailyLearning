@@ -4,7 +4,6 @@ function myInstanceof(target, pro) {
   // 获取target原型对象
   let proto = Object.getPrototypeOf(target);
   while (true) {
-    // 和
     if (proto === pro.prototype) return true;
     if (proto == null) return false;
     proto = Object.getPrototypeOf(proto);
