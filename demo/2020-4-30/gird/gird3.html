@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>圣杯布局/双飞翼布局</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 200px 1fr 200px;
+      /*三列，左右固定，中间自适应*/
+      grid-template-rows: 100px 1fr 100px;
+      /*三行，固定头部和底部的高度，中间自适应*/
+      height: 100vh;
+    }
+
+    .header {
+      grid-area: 1/1/1/4;
+      background: pink;
+    }
+
+    .left {
+      background: yellow;
+    }
+
+    .body {
+      background: yellowgreen;
+    }
+
+    .right {
+      background: lawngreen;
+    }
+
+    .footer {
+      grid-area: 3/1/3/4;
+      background: lightblue;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">header</div>
+    <div class="left">left</div>
+    <div class="body">body</div>
+    <div class="right">right</div>
+    <div class="footer">footer</div>
+  </div>
+</body>
+
+</html>

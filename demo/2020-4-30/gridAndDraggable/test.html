@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #drag1,
+    #drag2,
+    #drag3,
+    #drag4,
+    #drag5,
+    #drag6,
+    #drag7,
+    #drag8 {
+      width: 100px;
+      height: 100px;
+    }
+
+    .square {
+      position: relative;
+      width: 100%;
+      padding-bottom: 100%;
+      /* padding百分比是相对父元素宽度计算的 */
+    }
+
+    .square-inner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* 铺满父元素容器，这时候宽高就始终相等了 */
+    }
+
+    .gridBox {
+      display: grid;
+      /*网格布局*/
+      grid-template-rows: repeat(3, 1fr);
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 2%;
+      grid-auto-flow: row;
+      /*通过行或列的方式来依次填充*/
+    }
+
+    .gridBox>.gridItem {
+      color: #fff;
+      font-size: 50px;
+      text-align: center;
+      background: lightblue;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="square-inner gridBox">
+    <div class="gridItem" id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">1</div>
+    <div class="gridItem" ondrop="drop(event)" ondragover="allowDrop(event)">2</div>
+    <div class="gridItem" ondrop="drop(event)" ondragover="allowDrop(event)">3</div>
+    <div class="gridItem" ondrop="drop(event)" ondragover="allowDrop(event)">4</div>
+    <div class="gridItem" ondrop="drop(event)" ondragover="allowDrop(event)">5</div>
+    <div class="gridItem" ondrop="drop(event)" ondragover="allowDrop(event)">6</div>
+    <div class="gridItem" ondrop="drop(event)" ondragover="allowDrop(event)">7</div>
+    <div class="gridItem" ondrop="drop(event)" ondragover="allowDrop(event)">8</div>
+    <img id="drag1" src="./head.jpg" draggable="true" ondragstart="drag(event)" width="336" height="69" />
+    <!-- <img id="drag2" src="./head.jpg" draggable="true" ondragstart="drag(event)" width="336" height="69" />
+    <img id="drag3" src="./head.jpg" draggable="true" ondragstart="drag(event)" width="336" height="69" />
+    <img id="drag4" src="./head.jpg" draggable="true" ondragstart="drag(event)" width="336" height="69" />
+    <img id="drag5" src="./head.jpg" draggable="true" ondragstart="drag(event)" width="336" height="69" />
+    <img id="drag6" src="./head.jpg" draggable="true" ondragstart="drag(event)" width="336" height="69" />
+    <img id="drag7" src="./head.jpg" draggable="true" ondragstart="drag(event)" width="336" height="69" />
+    <img id="drag8" src="./head.jpg" draggable="true" ondragstart="drag(event)" width="336" height="69" /> -->
+  </div>
+</body>
+<script type="text/javascript">
+  function allowDrop(ev) {
+    ev.preventDefault();
+  }
+
+  function drag(ev) {
+    ev.dataTransfer.setData("Text", ev.target.id);
+  }
+
+  function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("Text");
+    ev.target.appendChild(document.getElementById(data));
+  }
+</script>
+
+</html>

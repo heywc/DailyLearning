@@ -1,3 +1,3 @@
 ## 简介
 
-手写代码，实现 js 常用功能。
+demo demo demo
