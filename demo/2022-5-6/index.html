@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./test.js"></script>
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="https://unpkg.com/vue-router@4"></script>
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <!-- 引入组件库 -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h1>Hello App!</h1>
+    <p>
+      <router-link to="/">Go to Home</router-link>
+      <router-link to="/about">Go to About</router-link>
+    </p>
+    <router-view></router-view>
+  </div>
+</body>
+<script>
+  // 5. 创建并挂载根实例
+  const app = Vue.createApp({})
+  //确保 _use_ 路由实例使
+  //整个应用支持路由。
+  app.use(router)
+  app.mount('#app')
+</script>
+
+</html>
