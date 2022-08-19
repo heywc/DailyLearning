@@ -45,7 +45,7 @@ body {
 
 /* ...其他样式 */
 .eyeSocketSleeping {
-    animation: sleeping 6s infinite;
+    animation: sleeping 2s infinite;
 }
 
 @keyframes sleeping {
@@ -54,7 +54,7 @@ body {
     }
 
     50% {
-        transform: scale(1.2);
+        transform: scale(0.8);
     }
 
     100% {

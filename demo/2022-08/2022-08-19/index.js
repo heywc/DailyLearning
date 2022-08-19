@@ -2,7 +2,7 @@
  * @Author: heywc “1842347744@qq.com”
  * @Date: 2022-08-19 10:01:54
  * @LastEditors: heywc “1842347744@qq.com”
- * @LastEditTime: 2022-08-19 11:54:43
+ * @LastEditTime: 2022-08-19 16:10:24
  * @FilePath: /DailyLearning/demo/2022-08/2022-08-19/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -10,9 +10,10 @@
 let eyeball = document.getElementById('eyeball'); // 获取eyeball元素
 let eyeballChart = echarts.init(eyeball); // 初始化画布
 let bigEye = document.getElementById('bigEye'); // 获取元素
+let eyeType = 'close';
 // ...其他代码
 let leftRotSize = 0; // 旋转角度
-let ballSize = 12; // 眼睛尺寸
+let ballSize = 10; // 眼睛尺寸
 let rotTimer; // 定时器
 // 眼球
 function getEyeballChart() {
@@ -81,10 +82,19 @@ function toSleep() {
     clearInterval(rotTimer); // 清除定时器
     rotTimer = setInterval(() => {
         getEyeballChart()
-        if (ballSize > 0) {
-            ballSize -= 0.1; // 当眼球存在时慢慢减小
-        } else {
-            bigEye.className = 'eyeSocket eyeSocketSleeping'; // 眼球消失后添加呼吸
+        if (eyeType === 'close') {
+            ballSize -= 0.1; // 当闭眼时慢慢减小
+            if(ballSize < 0) {
+                eyeType = 'open'
+            }
+        }
+        if (
+            eyeType === 'open'
+        ) {
+            ballSize += 0.1; // 当睁眼时慢慢变大
+            if(ballSize > 10) {
+                eyeType = 'close'
+            }
         }
         leftRotSize === 360 ? (leftRotSize = 0) : (leftRotSize += 0.1); // 旋转，
     }, 10);
