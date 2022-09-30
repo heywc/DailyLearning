@@ -1,0 +1,85 @@
+<!--
+ * @Author: heywc “1842347744@qq.com”
+ * @Date: 2022-08-24 16:05:39
+ * @LastEditors: heywc “1842347744@qq.com”
+ * @LastEditTime: 2022-08-24 16:23:49
+ * @FilePath: /DailyLearning/demo/2022-08/2022-08-24/news/index.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .newsBox{
+            width: 500px;
+            height: 200px;
+            margin: 10px auto;
+            display: flex;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow:0px 0px 6px 2px gray;;
+        }
+        .newsBox .newsBoxLeft{
+            width: 30%;
+            height: 100%;
+        }
+        .newsBox .newsBoxLeft img{
+            width: 100%;
+            height: 100%;
+        }
+        .newsBox .newsBoxRight{
+            width: 70%;
+            height: 100%;
+            margin-left: 10px;
+            position: relative;
+        }
+        .newsBox .newsBoxRight .newsTitle{
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .newsBox .newsBoxRight .newsContent{
+            font-size: 16px;
+            font-weight: 400;
+        }
+        .newsBox .newsBoxRight .newsTime{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: absolute;
+            bottom: 0;
+        }
+        .newsBox .newsBoxRight .newsTime button{
+            padding: 5px 10px;
+            font-size: 14px;
+            color: #fff;
+            background-color: #880000;
+            border: none;
+        } 
+        .newsBox .newsBoxRight .newsTime span{
+            font-size: 16px;
+            color: gray;
+        } 
+    </style>
+</head>
+<body>
+    <div class="newsBox">
+        <div class="newsBoxLeft">
+            <img src="img/img1.webp" alt="新闻的图片" srcset="">
+        </div>
+        <div class="newsBoxRight">
+            <div class="newsTitle">这是新闻的标题这是新闻的标题这是新闻的标题</div>
+            <div class="newsContent">新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容新闻内容</div>
+            <div class="newsTime">
+                <button>查看详情</button>
+                <span>2022-08-24</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

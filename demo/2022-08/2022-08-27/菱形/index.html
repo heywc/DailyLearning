@@ -1,0 +1,57 @@
+<!--
+ * @Author: heywc “1842347744@qq.com”
+ * @Date: 2022-08-27 10:01:47
+ * @LastEditors: heywc “1842347744@qq.com”
+ * @LastEditTime: 2022-08-27 10:39:19
+ * @FilePath: /DailyLearning/demo/2022-08/2022-08-27/index.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .title{
+            height: 30px;
+            display: flex;
+            align-items: center;
+        }
+        .title .title_text{
+            font-size: 12px;
+            color: #999;
+            white-space: nowrap;
+        }
+        .title .title_line{
+            width: calc(100% - 5px);
+            height: 1px;
+            background-color: #999;
+            position: relative;
+            left: 5px;
+        }
+        .title .title_line::before{
+            content: '';
+            display: block;
+            width: 4px;
+            height: 4px;
+            background-color: #999;
+            position: relative;
+            top: -1.5px;
+            right: 0px;
+            transform:rotate(45deg);
+            -ms-transform:rotate(45deg);
+            -moz-transform:rotate(45deg);
+            -webkit-transform:rotate(45deg);
+            -o-transform:rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="title">
+        <span class="title_text">这是新闻</span>
+        <div class="title_line"></div>
+    </div>
+</body>
+</html>
