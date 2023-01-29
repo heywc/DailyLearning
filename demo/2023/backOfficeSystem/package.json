@@ -11,12 +11,16 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
     "antd": "^5.1.6",
+    "axios": "^1.2.6",
+    "dingtalk-jsapi": "^3.0.12",
+    "jquery": "^3.6.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.0"
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.16",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",

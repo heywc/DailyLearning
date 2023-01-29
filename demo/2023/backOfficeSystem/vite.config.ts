@@ -2,7 +2,7 @@
  * @Author: heywc “1842347744@qq.com”
  * @Date: 2023-01-16 11:26:49
  * @LastEditors: heywc “1842347744@qq.com”
- * @LastEditTime: 2023-01-16 14:01:51
+ * @LastEditTime: 2023-01-29 14:29:21
  * @FilePath: /DailyLearning/demo/2023/backOfficeSystem/vite.config.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -28,13 +28,11 @@ export default defineConfig(({ command, mode }) => {
         // dev 开发环境独有配置
         return {
             ...config,
-            
         }
     } else if(command === 'build'){
         // build 生产环境独有配置
         return {
             ...config,
-            
         }
     }
 })
