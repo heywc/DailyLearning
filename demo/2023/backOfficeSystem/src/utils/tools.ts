@@ -2,7 +2,7 @@
  * @Author: heywc “1842347744@qq.com”
  * @Date: 2023-01-29 14:54:52
  * @LastEditors: heywc “1842347744@qq.com”
- * @LastEditTime: 2023-01-29 15:17:58
+ * @LastEditTime: 2023-01-30 17:03:05
  * @FilePath: /DailyLearning/demo/2023/backOfficeSystem/src/utils/tools.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -35,22 +35,28 @@ const APP_TOOLS = {
     clearCookie: function (name:string) {
         this.setCookie(name, '', -1);
     },
-    getUrlParam: function (field:string) {
-        // 通过 ? 分割获取后面的参数字符串
-        if (!window.location.href.includes('?')) {
-            return '';
-        }
-        var urlStr = window.location.href.split('?')[1];
-        // 创建空对象存储参数
-        var obj:any = {};
-        // 再通过 & 将每一个参数单独分割出来
-        var paramsArr = urlStr.split('&');
-        for (var i = 0, len = paramsArr.length; i < len; i++) {
-            // 再通过 = 将每一个参数分割为 key:value 的形式
-            var arr = paramsArr[i].split('=');
-            obj[arr[0]] = arr[1];
-        }
-        return obj[field];
+    // 获取路由参数对象
+    getUrlParams: (urlStr:string) => {
+        const url = new URL(urlStr);
+        return url.searchParams
     },
+    // 获取路由参数具体字段值
+    getUrlParam: (urlStr:string, field:string) => {
+        const url = new URL(urlStr);
+        const searchParams = url.searchParams;
+        return searchParams.get(field)
+    },
+    // 深拷贝
+    deepClone: (target:any) => {
+        if (typeof target === 'object') {
+            let cloneTarget:any =  Array.isArray(target) ? []: {};
+            for (const key in target) {
+                cloneTarget[key] = APP_TOOLS.deepClone(target[key])
+            }
+            return cloneTarget
+        } else {
+            return target
+        }
+    }
 }
 export default APP_TOOLS;

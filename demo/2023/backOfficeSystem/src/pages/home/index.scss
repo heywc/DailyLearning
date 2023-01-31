@@ -1,0 +1,15 @@
+.homePage{
+    height: 100%;
+    padding: 10px;
+    .welcome{
+        margin-top: 10vh;
+        text-align: center;
+        .welcomeWord{
+            font-size: 18px;
+        }
+        .systemName{
+            font-size: 28px;
+            font-weight: 600;
+        }
+    }
+}

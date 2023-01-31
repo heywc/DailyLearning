@@ -2,16 +2,16 @@
  * @Author: heywc “1842347744@qq.com”
  * @Date: 2023-01-16 11:26:49
  * @LastEditors: heywc “1842347744@qq.com”
- * @LastEditTime: 2023-01-29 15:44:38
+ * @LastEditTime: 2023-01-31 14:24:48
  * @FilePath: /DailyLearning/demo/2023/backOfficeSystem/src/App.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React, { useEffect, useState } from 'react';
 import { Routes, Route} from "react-router-dom";
-import { Layout } from 'antd';
+import { Layout,theme } from 'antd';
 
 import Home from './pages/home';
-import MenuBar from "./components/menuBar";
+import MenuBar from "./components/MenuBar";
 // import MineCreate from './pages/mineCreate';
 // import MineCopied from './pages/mineCopied';
 // import MineResolve from './pages/mineResolve';
@@ -44,7 +44,7 @@ function App() {
     }, [])
     const resizeUpdate = () => {
         let w = window.innerWidth;// 页面刚加载完成后获取浏览器窗口的大小
-        if(w < 500) {
+        if(w < 1200) {
             setCollapsed(true)
         } else {
             setCollapsed(false)
@@ -54,7 +54,7 @@ function App() {
     return (
         <Layout style={{ minHeight: '100vh',minWidth:'800px' }}>
             <Sider collapsible collapsed={collapsed} onCollapse={value => setCollapsed(value)}>
-                <div style={{textAlign:'center', padding:'10px'}}>
+                <div style={{textAlign: 'center', padding:'20px'}}>
                     {
                         collapsed ? 
                         <img src={'https://source.1kmxc.com/static-web-new/common/logo/ygl_icon_logo.png'} alt="" style={{width:'18px',height:'18px',borderRadius:'50%'}}/> 
@@ -64,7 +64,10 @@ function App() {
                 <MenuBar></MenuBar>
             </Sider>
             <Layout className="site-layout">
-                <Content style={{ padding: '20px'}}>
+                <Header style={{color:'#fff'}}>
+                    heywc
+                </Header>
+                <Content>
                     <Routes>
                         <Route path='/home' element={<Home />} />
                         <Route path='/login' element={<Login />} />

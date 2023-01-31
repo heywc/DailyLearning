@@ -2,7 +2,7 @@
  * @Author: heywc “1842347744@qq.com”
  * @Date: 2022-11-04 13:31:12
  * @LastEditors: heywc “1842347744@qq.com”
- * @LastEditTime: 2023-01-29 14:01:56
+ * @LastEditTime: 2023-01-30 15:26:54
  * @FilePath: /financial-management/src/components/menuBar.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Menu } from 'antd';
 import type { MenuProps } from 'antd';
 import {useCheckedMenu} from "../hooks/useCheckedMenu";
-import Icon from "./icon"
+import Icon from "./Icon"
 import {
     AppstoreOutlined,
     ContainerOutlined,
@@ -39,8 +39,6 @@ function getItem(
 export default (props:any) => {
     const {collapsed} = props;
     const [selectedKey,openKey] = useCheckedMenu();
-    console.log(collapsed, 'collapsed');
-    
     // const menulist = localStorage.getItem('ygl_contract_menulist') && JSON.parse(localStorage.getItem('ygl_contract_menulist')); 
     // let items: MenuItem[] = [
     //     getItem(<Link to="/home">模版-首页</Link>, '1', <Icon type={'icon-wochuangjiande'} fs="18px" mr="6px" ></Icon>),
