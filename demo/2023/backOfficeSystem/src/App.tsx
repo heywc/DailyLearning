@@ -2,7 +2,7 @@
  * @Author: heywc “1842347744@qq.com”
  * @Date: 2023-01-16 11:26:49
  * @LastEditors: heywc “1842347744@qq.com”
- * @LastEditTime: 2023-01-31 14:24:48
+ * @LastEditTime: 2023-02-02 16:22:53
  * @FilePath: /DailyLearning/demo/2023/backOfficeSystem/src/App.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -12,20 +12,14 @@ import { Layout,theme } from 'antd';
 
 import Home from './pages/home';
 import MenuBar from "./components/MenuBar";
-// import MineCreate from './pages/mineCreate';
-// import MineCopied from './pages/mineCopied';
-// import MineResolve from './pages/mineResolve';
-// import ContractList from './pages/selfSupport/contractList';
-// import CreateContract from './pages/selfSupport/createContract';
-// import ContractDetail from './pages/selfSupport/contractDetail';
-// import BatchAssociation from './pages/batchAssociation';
-// import OrderCreate from './pages/singlePage/orderCreate';
-// import OrderDetail from './pages/singlePage/orderDetail';
-
+import NavBar from './components/NavBar';
 import NotFound from './pages/notFound';
 import Login from './pages/login';
 import logo from  './assets/logo.png'
 import DataTotal from './pages/dataTotal';
+
+import "./styles/app.scss"
+
 const { Header, Content, Sider } = Layout;
 
 function App() {
@@ -64,8 +58,8 @@ function App() {
                 <MenuBar></MenuBar>
             </Sider>
             <Layout className="site-layout">
-                <Header style={{color:'#fff'}}>
-                    heywc
+                <Header style={{backgroundColor:'#fff'}}>
+                    <NavBar></NavBar>
                 </Header>
                 <Content>
                     <Routes>

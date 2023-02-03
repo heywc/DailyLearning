@@ -2,7 +2,7 @@
  * @Author: heywc “1842347744@qq.com”
  * @Date: 2023-01-29 14:37:00
  * @LastEditors: heywc “1842347744@qq.com”
- * @LastEditTime: 2023-01-29 15:07:54
+ * @LastEditTime: 2023-02-03 17:35:12
  * @FilePath: /DailyLearning/demo/2023/backOfficeSystem/src/utils/axios.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -12,11 +12,14 @@ import { autoLogin } from '../utils/authTool';
 
 const instance = axios.create({
     withCredentials: true,
+    baseURL: 'api'
 })
 instance.defaults.headers.common['Content-Type'] = 'application/json';
 
 instance.interceptors.request.use(
     (request) => {
+        console.log(request, 'reqqq');
+        
         if (request.method === 'get') {
             request.params = {
                 ...(request.params || {}),
@@ -31,6 +34,7 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
     (response) => {
+        console.log('响应成功..');
         if (response.status === 200) {
             if (Object.prototype.hasOwnProperty.call(response.data, 'code')) {
                 if(response.data.code === 200) {
@@ -66,9 +70,9 @@ instance.interceptors.response.use(
         return response;
     },
     (err) => {
+        console.log('响应失败..');
         // message.error(err?.response?.data?.msg || '网络连接失败');
-        message.error('请求异常');
-        return Promise.reject(err);
+        return Promise.reject(err.response);
     }
 );
 
