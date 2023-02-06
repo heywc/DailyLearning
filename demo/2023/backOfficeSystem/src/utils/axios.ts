@@ -2,18 +2,17 @@
  * @Author: heywc “1842347744@qq.com”
  * @Date: 2023-01-29 14:37:00
  * @LastEditors: heywc “1842347744@qq.com”
- * @LastEditTime: 2023-02-03 17:35:12
+ * @LastEditTime: 2023-02-06 13:21:12
  * @FilePath: /DailyLearning/demo/2023/backOfficeSystem/src/utils/axios.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import axios from 'axios';
 import { message } from 'antd';
-import { autoLogin } from '../utils/authTool';
-
 const instance = axios.create({
     withCredentials: true,
     baseURL: 'api'
 })
+
 instance.defaults.headers.common['Content-Type'] = 'application/json';
 
 instance.interceptors.request.use(

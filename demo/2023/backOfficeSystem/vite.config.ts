@@ -2,7 +2,7 @@
  * @Author: heywc “1842347744@qq.com”
  * @Date: 2023-01-16 11:26:49
  * @LastEditors: heywc “1842347744@qq.com”
- * @LastEditTime: 2023-02-03 17:03:03
+ * @LastEditTime: 2023-02-06 15:11:36
  * @FilePath: /DailyLearning/demo/2023/backOfficeSystem/vite.config.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -18,6 +18,8 @@ export default defineConfig(({ command, mode }) => {
     // 注意 Vite 默认是不加载 .env 文件的，因为这些文件需要在执行完 Vite 配置后才能确定加载哪一个，
     // 举个例子，root 和 envDir 选项会影响加载行为。不过当你的确需要时，你可以使用 Vite 导出的 loadEnv 函数来加载指定的 .env 文件。
     const env = loadEnv(mode, process.cwd()); // 当前环境变量
+    console.log(env);
+    
     const config = {
         plugins: [],
         define: {
@@ -26,13 +28,22 @@ export default defineConfig(({ command, mode }) => {
         server: {
             host: true,
             hmr: true,
-            proxy: {
-                [env.VITE_BASE_URL]: {
-                    target: env.VITE_TARGET_URL,
-                    changeOrigin: true,
-                    rewrite: (path) => path.replace(new RegExp(`^${env.VITE_BASE_URL}`), '')
-                }
-            }
+            // proxy: {
+            //     // [env.VITE_BASE_URL]: {
+            //     //     target: env.VITE_TARGET_URL,
+            //     //     changeOrigin: true,
+            //     //     rewrite: (path) => {
+            //     //         return path.replace(new RegExp(`^${env.VITE_BASE_URL}`), '')
+            //     //     }
+            //     // }
+            //     'api': {
+            //         target: env.VITE_TARGET_URL,
+            //         changeOrigin: true,
+            //         rewrite: (path) => {
+            //             return path.replace(new RegExp(/^\/api/), '')
+            //         }
+            //     }
+            // }
         },
     }
     
