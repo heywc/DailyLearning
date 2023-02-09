@@ -2,7 +2,7 @@
  * @Author: heywc “1842347744@qq.com”
  * @Date: 2023-01-16 11:26:49
  * @LastEditors: heywc “1842347744@qq.com”
- * @LastEditTime: 2023-02-06 15:11:36
+ * @LastEditTime: 2023-02-08 13:03:30
  * @FilePath: /DailyLearning/demo/2023/backOfficeSystem/vite.config.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -19,7 +19,6 @@ export default defineConfig(({ command, mode }) => {
     // 举个例子，root 和 envDir 选项会影响加载行为。不过当你的确需要时，你可以使用 Vite 导出的 loadEnv 函数来加载指定的 .env 文件。
     const env = loadEnv(mode, process.cwd()); // 当前环境变量
     console.log(env);
-    
     const config = {
         plugins: [],
         define: {

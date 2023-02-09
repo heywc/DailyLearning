@@ -2,7 +2,7 @@
  * @Author: heywc “1842347744@qq.com”
  * @Date: 2023-01-29 14:37:00
  * @LastEditors: heywc “1842347744@qq.com”
- * @LastEditTime: 2023-02-06 13:21:12
+ * @LastEditTime: 2023-02-08 18:51:22
  * @FilePath: /DailyLearning/demo/2023/backOfficeSystem/src/utils/axios.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -17,8 +17,6 @@ instance.defaults.headers.common['Content-Type'] = 'application/json';
 
 instance.interceptors.request.use(
     (request) => {
-        console.log(request, 'reqqq');
-        
         if (request.method === 'get') {
             request.params = {
                 ...(request.params || {}),
@@ -33,7 +31,6 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
     (response) => {
-        console.log('响应成功..');
         if (response.status === 200) {
             if (Object.prototype.hasOwnProperty.call(response.data, 'code')) {
                 if(response.data.code === 200) {
