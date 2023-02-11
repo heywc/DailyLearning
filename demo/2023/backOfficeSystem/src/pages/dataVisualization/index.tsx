@@ -10,7 +10,7 @@ import React  from "react";
 const DataTotal: React.FC = ()=>{
     return (
         <div>
-            数据可视化页
+            数据可视化页11
         </div>
     )
 }
