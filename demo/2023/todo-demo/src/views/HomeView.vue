@@ -2,7 +2,7 @@
  * @Author: heywc “1842347744@qq.com”
  * @Date: 2023-03-14 14:11:08
  * @LastEditors: heywc “1842347744@qq.com”
- * @LastEditTime: 2023-03-14 17:48:54
+ * @LastEditTime: 2023-04-03 15:40:40
  * @FilePath: /DailyLearning/demo/2023/todo-demo/src/views/HomeView.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -27,31 +27,6 @@
                     :h="item.h"
                     :i="item.i"
                     :key="item.i"
-                    :style="{ backgroundColor: item.i === '0' ? '' : '#999999' }"
-                    >
-                {{item.i}}
-            </grid-item>
-        </grid-layout>
-        <grid-layout
-            :layout.sync="layout"
-            :col-num="12"
-            :row-height="30"
-            :is-draggable="true"
-            :is-resizable="true"
-            :is-mirrored="false"
-            :vertical-compact="false"
-            :margin="[10, 10]"
-            :use-css-transforms="true"
-            :preventCollision="false"
-        >
-            <grid-item v-for="item in layout"
-                    :x="item.x"
-                    :y="item.y"
-                    :w="item.w"
-                    :h="item.h"
-                    :i="item.i"
-                    :key="item.i"
-                    :style="{ backgroundColor: item.i === '0' ? '' : '#999999' }"
                     >
                 {{item.i}}
             </grid-item>

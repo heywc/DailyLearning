@@ -2,7 +2,7 @@
  * @Author: heywc “1842347744@qq.com”
  * @Date: 2023-03-10 14:15:35
  * @LastEditors: heywc “1842347744@qq.com”
- * @LastEditTime: 2023-03-10 14:17:05
+ * @LastEditTime: 2023-03-24 15:41:05
  * @FilePath: /DailyLearning/demo/2023/MicroFrontEnd/iframe/index.html
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -15,6 +15,16 @@
     <title>微前端</title>
 </head>
 <body>
-    
+    <iframe id="child-app" src="./childA.html"></iframe>
+    <iframe id="child-app" src="./childB.html"></iframe>
 </body>
+<script>
+    window.onload = function () {
+    const childApp = document.getElementById('child-app');
+    childApp.onload = function () {
+            const childAppRoot = childApp.contentWindow.app;
+            // 在主应用中可以通过 childAppRoot 访问子应用的根实例
+        };
+    };
+</script>
 </html>

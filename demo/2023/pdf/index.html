@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线预览</title>
+    <style>
+        #the-canvas {
+            border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript" src="./pdfjs/build/pdf.js"></script>
+
+    <h1>PDF.js 'Hello, base64!' example</h1>
+    <canvas id="the-canvas"></canvas>
+    <!-- <iframe src="http://storage.xuetangx.com/public_assets/xuetangx/PDF/PlayerAPI_v1.0.6.pdf"></iframe> -->
+    <br>
+    <!-- <a href="pdfjscors/web/viewer.html?file=http://storage.xuetangx.com/public_assets/xuetangx/PDF/PlayerAPI_v1.0.6.pdf">点击查看pdf内容1</a>
+    <br>
+    <a href="pdfjscors/web/viewer.html?file=https://api-test.1kmxc.com/ding/hrm/getHrmImage?fileKey=image/2021/3/24/1616569067379/ding159e37c963eae133_3834707440322da4951e9637c100be4f6ab28946.pdf">点击查看pdf内容2</a> -->
+</body>
+  <!-- <script type="text/javascript">
+    // var _url = 'https://static.1kmxc.com/image/logo/OKR.pdf';
+    var _url = './pdfjs/web/compressed.tracemonkey-pldi-09.pdf';
+    var CMAP_URL = './pdfjs/build/web/cmaps/';//自己的pdfjs字库的路径
+    pdfjsLib.GlobalWorkerOptions.workerSrc ='./pdfjs/build/pdf.worker.js';//自己的路径
+    var loadingTask = pdfjsLib.getDocument({
+        url: pdfjsLib.getDocument({ url: _url})
+    });
+    loadingTask.promise.then(function(pdf) {
+        pdf.getPage(1).then(function(page) {
+            var scale = 1.5;
+            var viewport = page.getViewport(scale);
+            console.log(viewport,'viewport');
+            var canvas = document.getElementById('the-canvas');
+            var context = canvas.getContext('2d');
+            canvas.height = 500|| viewport.height;
+            canvas.width = 200 || viewport.width;
+            var renderContext = {
+                canvasContext: context,
+                viewport: viewport,
+            };
+            page.render(renderContext);
+            console.log(page);
+        });
+    });
+    </script> -->
+    <script type="text/javascript">
+        //直接使用官网例子中的文档吧
+        //atob(  后台返回的把文档进行base64编码之后的String  )
+        var pdfData = atob(
+        'JVBERi0xLjcKCjEgMCBvYmogICUgZW50cnkgcG9pbnQKPDwKICAvVHlwZSAvQ2F0YWxvZwog' +
+        'IC9QYWdlcyAyIDAgUgo+PgplbmRvYmoKCjIgMCBvYmoKPDwKICAvVHlwZSAvUGFnZXMKICAv' +
+        'TWVkaWFCb3ggWyAwIDAgMjAwIDIwMCBdCiAgL0NvdW50IDEKICAvS2lkcyBbIDMgMCBSIF0K' +
+        'Pj4KZW5kb2JqCgozIDAgb2JqCjw8CiAgL1R5cGUgL1BhZ2UKICAvUGFyZW50IDIgMCBSCiAg' +
+        'L1Jlc291cmNlcyA8PAogICAgL0ZvbnQgPDwKICAgICAgL0YxIDQgMCBSIAogICAgPj4KICA+' +
+        'PgogIC9Db250ZW50cyA1IDAgUgo+PgplbmRvYmoKCjQgMCBvYmoKPDwKICAvVHlwZSAvRm9u' +
+        'dAogIC9TdWJ0eXBlIC9UeXBlMQogIC9CYXNlRm9udCAvVGltZXMtUm9tYW4KPj4KZW5kb2Jq' +
+        'Cgo1IDAgb2JqICAlIHBhZ2UgY29udGVudAo8PAogIC9MZW5ndGggNDQKPj4Kc3RyZWFtCkJU' +
+        'CjcwIDUwIFRECi9GMSAxMiBUZgooSGVsbG8sIHdvcmxkISkgVGoKRVQKZW5kc3RyZWFtCmVu' +
+        'ZG9iagoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAwMDAwIG4g' +
+        'CjAwMDAwMDAwNzkgMDAwMDAgbiAKMDAwMDAwMDE3MyAwMDAwMCBuIAowMDAwMDAwMzAxIDAw' +
+        'MDAwIG4gCjAwMDAwMDAzODAgMDAwMDAgbiAKdHJhaWxlcgo8PAogIC9TaXplIDYKICAvUm9v' +
+        'dCAxIDAgUgo+PgpzdGFydHhyZWYKNDkyCiUlRU9G');
+// var pdfData = atob('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');
+        
+        // var pdfData = atob('aHR0cHM6Ly9hcGktdGVzdC4xa214Yy5jb20vZGluZy9ocm0vZ2V0SHJtSW1hZ2U/ZmlsZUtleT1pbWFnZS8yMDE4LzExLzkvMTU0MTczNDYzNTM1OS9kaW5nMTU5ZTM3Yzk2M2VhZTEzM18yMjE4MTA1MzkzZTQxYWYyNmE4ZjEyZmRmNzg5MjRhN2RjODc2MTUzOC5wZGY=');
+    
+        var CMAP_URL = './pdfjs/web/cmaps/';//自己的pdfjs字库的路径
+        pdfjsLib.GlobalWorkerOptions.workerSrc ='./pdfjs/build/pdf.worker.js';//自己的路径
+        var loadingTask = pdfjsLib.getDocument({
+            data: pdfData,
+            cMapUrl: CMAP_URL,
+            cMapPacked: true,
+        }); 
+        loadingTask.promise.then(function(pdf) {
+            pdf.getPage(1).then(function(page) {
+                var scale = 1.5;
+                var viewport = page.getViewport(1.5);
+                
+                var canvas = document.getElementById('the-canvas');
+                var context = canvas.getContext('2d');
+                canvas.height = 500 || viewport.height;
+                canvas.width = 300 || viewport.width;
+                var renderContext = {
+                    canvasContext: context,
+                    viewport: viewport,
+                };
+                page.render(renderContext);
+            });
+        });
+    </script>
+</html>
