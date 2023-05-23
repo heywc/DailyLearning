@@ -2,7 +2,7 @@
  * @Author: heywc “1842347744@qq.com”
  * @Date: 2023-05-06 09:27:47
  * @LastEditors: heywc “1842347744@qq.com”
- * @LastEditTime: 2023-05-22 11:20:06
+ * @LastEditTime: 2023-05-22 17:18:09
  * @FilePath: /DailyLearning/demo/2023/react知识点.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -154,8 +154,25 @@ useRef：让你在函数组件中使用 ref。
 useReducer：让你在函数组件中使用 reducer 模式来管理 state。
 useCallback 和 useMemo：用于性能优化，让你可以在函数组件中缓存函数和计算结果。
 
-### 
 ### React Diff 算法
+
+React Diff 算法是 React 在进行虚拟 DOM 对比时使用的一种算法，用于找出前后两个虚拟 DOM 树之间的差异，并将这些差异应用到真实的 DOM 上，以完成页面的更新。
+
+React Diff 算法的基本思想是尽量减少 DOM 操作的数量，只对真正需要更新的部分进行操作，以提高性能。它通过以下步骤来进行对比和更新：
+
+- 比较树的根节点：首先，React Diff 算法会比较前后两个虚拟 DOM 树的根节点，如果它们类型不同，说明整个树需要被替换，React 会创建一个新的树并完全替换原来的树。
+
+- 比较子节点：如果根节点的类型相同，React 会对比它们的子节点。React Diff 算法会使用一种称为 "key" 的特殊属性来匹配和排序子节点。在对比子节点时，React Diff 算法会尽可能地复用已有的 DOM 节点，减少 DOM 操作。
+
+- 递归对比子节点：对比子节点时，React Diff 算法会使用一种深度优先的递归方式，对比每个子节点及其子树。React Diff 算法会根据节点的 "key" 属性来判断节点的增、删、移动等操作，以确定需要进行的 DOM 操作。
+
+- 更新差异：在对比过程中，React Diff 算法会记录下需要进行的 DOM 操作，例如插入、删除、替换、移动等。然后，React 会将这些操作批量应用到真实的 DOM 上，以完成页面的更新。
+
+React Diff 算法的核心思想是通过虚拟 DOM 的对比，最小化对真实 DOM 的操作。它通过对节点进行 "key" 属性的匹配和排序，以及使用深度优先的递归方式，能够高效地找出前后两个虚拟 DOM 树之间的差异，并只对需要更新的部分进行操作。
+
+需要注意的是，React Diff 算法并不是完美的，它有时也会出现一些不够理想的情况，例如当列表中的项发生变化时可能会导致重新渲染整个列表。为了优化 Diff 算法的性能和精确度，开发者可以合理使用 "key" 属性，并避免频繁地修改 "key"。
+
+总结起来，React Diff 算法是 React 在虚拟 DOM 对比过程中使用的一种算法，通过比较前后两个虚拟 DOM 树的差异，最小化对真实 DOM 的操作，以提高性能和效率。
 
 ### React fiber 架构的理解
  React fiber 是 React v16 引入的一种新的调度算法和协调机制，用于实现增量式的、可中断的、优先级高的渲染。
@@ -238,3 +255,62 @@ React 的合成事件有以下特点和用法：
 
 **总结起来，虚拟 DOM 是 React 的一种优化机制，通过在内存中创建、对比和更新虚拟 DOM 树，减少对真实 DOM 的操作次数，提高了性能和效率。**
 
+
+### 什么是 React 的错误边界（Error Boundary）？如何使用它来处理组件的错误？
+React 的错误边界（Error Boundary）是一种 React 组件，用于捕获和处理其子组件（子树）中发生的 JavaScript 错误，以防止整个应用崩溃。它可以将错误限制在错误边界组件内部，并显示备用的 UI 或错误信息，使应用能够继续正常运行。
+
+使用错误边界可以有效处理以下类型的错误：
+- 渲染错误：当子组件在渲染过程中发生错误时，错误边界可以捕获并处理这些错误。
+- 生命周期方法错误：当子组件在生命周期方法（如 componentDidCatch、componentDidUpdate 等）中发生错误时，错误边界可以捕获并处理这些错误。
+- 事件处理器错误：当子组件中的事件处理器中发生错误时，错误边界可以捕获并处理这些错误
+
+要使用错误边界，需要创建一个继承自 React 组件的新组件，并实现 componentDidCatch 生命周期方法。componentDidCatch 方法会在其子组件中发生错误时被调用，可以在此方法中进行错误处理。 例如：
+
+```js
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    // 可以在这里记录错误日志或发送错误报告
+    console.error(error, errorInfo);
+    this.setState({ hasError: true });
+  }
+
+  render() {
+    if (this.state.hasError) {
+      // 自定义错误界面或显示备用 UI
+      return <h1>Oops! Something went wrong.</h1>;
+    }
+    return this.props.children;
+  }
+}
+
+// 使用错误边界包裹子组件
+<ErrorBoundary>
+  <MyComponent />
+</ErrorBoundary>
+
+```
+
+在上述示例中，ErrorBoundary 组件作为一个错误边界，包裹了 MyComponent 组件。当 MyComponent 组件或其子组件发生错误时，错误会被 ErrorBoundary 组件捕获，并通过 componentDidCatch 方法进行处理。在 render 方法中，可以根据需要显示备用的 UI 或错误信息。
+
+需要注意的是，错误边界只能捕获其子组件中的错误，无法捕获其自身发生的错误或异步代码中的错误。因此，建议在应用中合理使用错误边界，并在重要的组件层级中使用它们，以提高应用的稳定性和可靠性
+
+### React 中如何处理动画效果
+
+1. CSS 过渡和动画：使用 CSS 过渡属性（如 `transition`）和关键帧动画（如 `@keyframes`）来实现简单的动画效果。通过添加或删除 CSS 类名来触发动画，并使用 React 的状态管理来控制类名的变化。可以使用 CSS-in-JS 库（如 styled-components、emotion）来方便地在 React 组件中定义和使用动画样式。
+
+2. CSS 库：使用现有的 CSS 动画库，如 `react-transition-group`、`react-spring`、`framer-motion` 等。这些库提供了更高级的动画功能和 API，可以处理复杂的动画场景，并提供更多的控制选项。
+
+3. JavaScript 动画库：使用独立的 JavaScript 动画库，如 `gsap`、`anime.js` 等。这些库提供了更灵活和强大的动画控制，可以实现复杂的动画效果，包括元素的移动、旋转、缩放等。
+
+4. React 动画库：使用专门为 React 开发的动画库，如 `react-spring`、`framer-motion` 等。这些库提供了针对 React 组件的动画功能，可以方便地在组件生命周期中添加动画效果，支持物理动画和弹簧效果等。
+
+5. 使用 Hooks 和 `useEffect`：通过使用 React Hooks（如 `useState`、`useEffect`）和原生 JavaScript 动画 API（如 `requestAnimationFrame`）来实现动画效果。可以使用 `useEffect` 监听状态变化，并在状态变化时更新动画属性或触发动画效果。
+
+6. 使用第三方库：除了上述提到的库之外，还有其他许多第三方库可用于处理动画效果，具体取决于需求和项目要求。一些常见的库包括 Velocity.js、GreenSock（GSAP）、React Move 等。
+
+选择合适的动画处理方式取决于项目需求、开发者熟悉程度和个人偏好。建议根据动画复杂度、性能需求和团队技术栈选择合适的方法，并注意性能优化和动画的流畅性。
