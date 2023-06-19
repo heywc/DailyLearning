@@ -2,7 +2,7 @@
  * @Author: heywc “1842347744@qq.com”
  * @Date: 2023-05-06 09:27:47
  * @LastEditors: heywc “1842347744@qq.com”
- * @LastEditTime: 2023-05-22 17:18:09
+ * @LastEditTime: 2023-06-16 13:32:10
  * @FilePath: /DailyLearning/demo/2023/react知识点.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -299,6 +299,54 @@ class ErrorBoundary extends React.Component {
 
 需要注意的是，错误边界只能捕获其子组件中的错误，无法捕获其自身发生的错误或异步代码中的错误。因此，建议在应用中合理使用错误边界，并在重要的组件层级中使用它们，以提高应用的稳定性和可靠性
 
+
+<!-- 错误边界 函数组件形式 -->
+```js
+import React, { useState } from 'react';
+
+function ErrorBoundary(props) {
+  const [hasError, setHasError] = useState(false);
+
+  // 错误边界的错误处理函数
+  const handleError = (error, errorInfo) => {
+    // 可以在这里记录错误信息或发送错误报告
+    console.error(error, errorInfo);
+    setHasError(true);
+  };
+
+  // 渲染子组件
+  const renderChildren = () => {
+    try {
+      return props.children;
+    } catch (error) {
+      handleError(error, null);
+      return null;
+    }
+  };
+
+  // 如果发生错误，渲染错误提示信息
+  if (hasError) {
+    return <div>Something went wrong.</div>;
+  }
+
+  // 正常渲染子组件
+  return <React.Fragment>{renderChildren()}</React.Fragment>;
+}
+
+// 使用错误边界包裹需要捕获错误的组件
+function MyComponent() {
+  // ...
+
+  return (
+    <ErrorBoundary>
+      {/* 需要捕获错误的组件 */}
+      <ChildComponent />
+    </ErrorBoundary>
+  );
+}
+
+```
+
 ### React 中如何处理动画效果
 
 1. CSS 过渡和动画：使用 CSS 过渡属性（如 `transition`）和关键帧动画（如 `@keyframes`）来实现简单的动画效果。通过添加或删除 CSS 类名来触发动画，并使用 React 的状态管理来控制类名的变化。可以使用 CSS-in-JS 库（如 styled-components、emotion）来方便地在 React 组件中定义和使用动画样式。
@@ -314,3 +362,29 @@ class ErrorBoundary extends React.Component {
 6. 使用第三方库：除了上述提到的库之外，还有其他许多第三方库可用于处理动画效果，具体取决于需求和项目要求。一些常见的库包括 Velocity.js、GreenSock（GSAP）、React Move 等。
 
 选择合适的动画处理方式取决于项目需求、开发者熟悉程度和个人偏好。建议根据动画复杂度、性能需求和团队技术栈选择合适的方法，并注意性能优化和动画的流畅性。
+
+
+## Suspense
+
+用于实现延迟加载（lazy loading）和代码分割（code splitting）。<Suspense> 组件可以包裹异步加载的组件，在组件加载完成之前显示一个加载指示器或占位内容。
+
+<Suspense> 组件的使用通常与 React.lazy() 和 import() 结合使用。 React.lazy() 是一个懒加载函数，用于动态导入组件
+
+基本使用方法:
+1. 定义一个异步加载的组件，例如： 
+```js
+const MyComponent = React.lazy(() => import('./MyComponent'));
+```
+2. 在使用异步加载组件的父组件中，使用 <Suspense> 组件包裹需要延迟加载的组件，并设置 fallback 属性，指定在组件加载过程中显示的加载指示器或占位内容
+
+```js
+function App() {
+    return (
+        <div>
+        <Suspense fallback={<div>Loading...</div>}>
+            <MyComponent />
+        </Suspense>
+        </div>
+    );
+}
+``
